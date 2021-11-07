@@ -1,0 +1,672 @@
+body{
+    background-image: url(./imagenes/habitats/fondo.png);/*Para poner una imagen de textura en el fondo de la pagina con fines esteticos*/
+    background-attachment:fixed;/*Para que el fondo se mantenga fijo*/
+    display: flex;/*para distribuir los elementos dentro del body*/
+    flex-flow: column nowrap;/*para que cada sección aparezca debajo del siguiente*/
+    justify-content: center;/*para centrar el contenido*/
+    gap: 100px 0px;/*para que haya un espacio de 100px entre cada apartado*/
+    width: 100%;
+    margin: 0px;
+}
+
+p{
+    text-align: justify;/*justificar todos los parrafos de la web*/
+}
+
+@font-face {
+    font-family: "absender";/*para colocarle un nombre a la tipografia (en el texto no pusé tildes porque la tipografia no me dejaba)*/
+    src: url("./tipografia/absender1.ttf");
+    /*Para importar una nueva tipografia*/
+}
+
+.primercontenidoprincipal{
+    display: flex;/*para que cada sección del contenido principal aparezca debajo del siguiente*/
+    flex-flow: column nowrap;/*para que cada sección aparezca debajo del siguiente*/
+    gap: 50px;/*para que haya un espacio de 50px entre cada apartado*/
+}
+
+/*---------------flechainicio-------------*/
+
+.inicio{
+    position: fixed;/*para que si se hace scrol no se mueva y se mantenga fijo en la pantalla*/
+    margin-left: calc(100% - 15vw);/* la flecha se movera para mantenerse visible dependiendo de la resolución del ancho de la pantalla*/
+    margin-top: 70vh;/* la flecha se movera para mantenerse visible dependiendo de la resolución del alto de la pantalla*/
+    z-index:1; /*Para que se mantenga siempre per encima de los demás elementos de la pagina*/
+}
+
+.inicio img{
+    width: calc(50px + 3vw);/* para que la flecha se haga más pequeña si el ancho de la pantalla disminuye*/
+}
+
+@media (max-height: 450px){
+    /* si el alto de la pantalla es inferior a a 450px se cumple lo siguiente*/
+    .inicio{
+        margin-top: 50vh;/* la flecha se movera para mantenerse visible dependiendo de la resolución del alto de la pantalla*/
+    }
+    
+
+}
+
+/*----------------habitats----------------*/
+.habitats figure {
+    margin: 0;
+    padding: 0;
+}
+
+.habitats img {
+    object-fit: cover;/*para que la imagen se corte en vez de ditorcionarse, dependiendo de las dimenciones del grid */
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;/*redondear esquinas*/
+    box-shadow: 0px 0px 60px 5px rgba(0, 0, 0, 0.473);/*sombrear*/
+}
+
+
+
+.habitats h3{
+    padding: 0;
+    margin: 0;
+    font-size: 10vw;/*el tamño de latra dismuye si el de la ventana tambien lo hace*/
+    font-family: absender;
+    color: rgb(255, 255, 255);
+    transform: scale(1);
+    place-self: center;
+    transition-duration: 1.2s;/*que la transición dure unos segundos */
+
+}
+
+
+.item-c, .item-e, .item-g, .item-i {   
+    display: grid; /*para que el texto y la imagen estén dentro de un grid y poderlos superponer*/
+    grid-template-columns: 100%; /*una fila que ocupe toda la celda*/
+    grid-template-rows: 100%;/*una columna que ocupe toda la celda*/
+}
+
+
+.habitats h3:hover {
+    transform: scale(1.1);/*cuando el mouse está encima de la letra aumenta su tamaño*/
+}
+
+.item-c img, .item-e img, .item-g img, .item-i img{
+    grid-area: 1 /1 / 1/ 1;/*el area  del grid que ocupa la imagen*/
+    transition-duration: 1.2s;/*que la transición dure unos segundos */
+
+}
+
+figcaption{
+    grid-area: 1 /1 / 1/ 1;/*el area  del grid que ocupa el texto*/
+    place-self: center;/*centrar*/
+    
+}
+
+
+.item-c img:hover, .item-e img:hover, .item-g img:hover, .item-i img:hover {
+    transform: scale(1.1); /*cuando el mouse está encima de la imagen aumenta su tamaño*/
+    filter: brightness(30%);/*cuando el mouse está encima de la imagen, esta disminuye su luminocidad*/
+}
+
+/*----------------fin de habitats----------------*/
+
+/*----------------articulos1 (apartado amenazas) y articulos2 (apartado protege)-------------*/
+
+.articulos1,.articulos2{
+    display: grid; /*para organizar el contenidos de "amenazas" en una cuadricula*/
+    width:95%; /*para que el apartado no ocupe el 100% del ancho de la pantalla*/
+    margin-left: auto;/*para centrar*/
+    margin-right: auto;/*para centrar*/
+    grid-gap: 1rem;/*espacio entre cada apartado*/
+}
+
+.articulos1{
+    grid-template-columns: 1fr 1fr 1fr;/*para que cada columna ocupe el mismo ancho*/
+    grid-template-areas: "caza trafico calentamientoglobal";/*organizar el contenido*/
+}
+
+.articulos2{
+    grid-template-areas: "adopta apadrina";
+}
+
+.articulos1 h3, .articulos2 h3{
+    font-family: absender;
+    font-size: 5vw;/*que el tamaño de la letra se adapte al ancho de la pantalla*/
+    transition-duration: 1.2s;/*que la transición dure unos segundos */
+
+}
+
+.articulos1 p, .articulos2 p{
+    opacity: 0;/*para que no sea visible*/
+    visibility: hidden;/*para ocultar el texto*/
+    transition-duration: 1.2s;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+
+}
+.caza, .trafico, .calentamientoglobal, .adopta, .apadrina{
+    border-radius: 20px ;/*redondear bordes*/
+    box-shadow: 0px 0px 60px 5px rgba(0, 0, 0, 0.473);/*sombra*/
+    transition-duration: 1.2s;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color:rgb(70, 70, 70);
+    background-blend-mode:overlay;
+    color: white;
+    padding: 10px;
+}
+
+.caza, .trafico, .calentamientoglobal{
+    height: calc(700px - 10vw);/*para que aumente la altura de la cuadicula caundo se redusca el ancho de la pantalla y que quepa todo el texto*/
+}
+
+.caza:hover, .trafico:hover, .calentamientoglobal:hover, .adopta:hover, .apadrina:hover{
+    transform: scale(0.9);/*para que disminuya el apartado cuando el mouse esta encima*/
+}
+
+.caza:hover h3, .trafico:hover h3, .calentamientoglobal:hover h3, .adopta:hover h3, .apadrina:hover h3{
+    transform: scale(1.1);/*para que aumente el texto cuando el mouse esta encima del apartado*/
+}
+
+.caza:hover p, .trafico:hover p, .calentamientoglobal:hover p, .adopta:hover p, .apadrina:hover p{
+    opacity: 1;/*para que se haga visible el texto cuando el mouse esta sombre el apartado*/
+    visibility: visible;
+}
+
+.caza{
+    grid-area: caza;/*el nombre del area que ocupa en el grid*/
+    background-image: url(./imagenes/articulos/caza\ de\ animales1.jpg);/*fondo decorativo del apartado, en los demás apartados se muestra la misma extructura*/
+}
+
+.trafico{
+    grid-area: trafico;
+    background-image: url(./imagenes/articulos/trafico\ de\ animales1.jpg);
+}
+
+.calentamientoglobal{
+    grid-area: calentamientoglobal;
+    background-image: url(./imagenes/articulos/calentamiento\ global1.jpg);
+}
+
+
+.adopta{
+    background-image: url(./imagenes/articulos/adoptar.png);
+}
+
+.apadrina{
+    background-image: url(./imagenes/articulos/apadrina.jpg);
+}
+
+/*------------Aside----------*/
+
+aside{
+    margin: auto;/*para centrar*/
+    background-color: white;
+    width: 80%;/*para que no ocupe el 100% de la pantalla*/
+    padding: 20px;/*espacio entre el texto y el fin de caja blanca*/
+    box-shadow: 0px 0px 60px 5px rgba(0, 0, 0, 0.473);/*sombra*/
+
+}
+
+aside p{
+    text-align: center;/*centrar texto*/
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+}
+
+aside em{
+    font-style: italic;
+}
+
+/*------------ finAside----------*/
+/*------------ header----------*/
+
+header{
+    background-image: url(./imagenes/habitats/glaciar4fondo.jpg); /*para que poner en el fondo una imagen decorativa*/
+    background-size: cover;/*para que la imagen del fondo se adapte al espacio sin distoriconarse*/
+    background-repeat: no-repeat;/*para que aparezca una sola image*/
+    display: flex;/*para ordenar el titulo y el logo en una misma linea*/
+    flex-flow: row nowrap;/*ordenar en una filo*/
+    min-height: 200px;
+}
+
+header h1{
+    font-size: 10vw;/*texto adaptable a la pantalla*/
+    color: rgb(219, 75, 75);
+    font-family: absender;
+}
+
+header figure{
+    width: 30%;/*para que el texto se cruce con la imagen*/
+}
+
+header img{
+    width: 200%;
+}
+
+/*------------ finAside----------*/
+/*------------ navegador----------*/
+
+.navegador {
+    background-color: rgb(219, 75, 75);
+    display: flex;
+    align-content: center;
+}
+
+.apartadosmenuprincipal {
+    background-color:  rgb(219, 75, 75);
+    font-size: 20px;
+    padding: 16px;
+    border: none;
+    cursor: pointer;/*para que cambie el cursor cuando este encima*/
+    text-decoration: none;/*para que no se vea el estilo de los links*/
+    color: rgb(255, 255, 255);
+    font-family: absender;
+}
+
+.apartadosmenu {
+    display: inline-block;
+    /*salga uno junto al otro*/
+}
+
+.submenu {
+    display: none;
+    /*para que no se desplegue si no el mouse no esta sobre este*/
+    position:absolute;
+    /*para que se despligue sobre el header y no lo desplace*/
+    background-color: #ffffff;
+    width: 20%;
+}
+
+.submenu a {
+    font-family: absender;
+    color: rgb(219, 75, 75);
+    padding: 12px 16px;
+    text-decoration: none; /*son links--> quitar subrayados*/
+    display: block;
+    /*si lo sacas, estará una al lado de la otra*/
+    font-size:  20px;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+}
+
+.submenu a:hover {
+    text-decoration:line-through;
+    /*al pasar por encima mete el texto se tacha*/
+}
+
+.apartadosmenu:hover .submenu {
+    display: block;
+    /*cuando me meto encima se despliega*/
+}
+
+.apartadosmenu:hover .apartadosmenuprincipal {
+    text-decoration:line-through;
+    /*al pasar por encima el texto se tacha*/
+
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+.menuprincipal{
+    display:flex;
+    justify-content: space-evenly;/*para que se distribuya uniformemmente sobre la fila cada aparatado del menu*/
+    width: 100%; /*para que tome la largo del 100% del navegador*/
+}
+
+li {
+    list-style-type: none;
+}
+
+/*------------ habitats----------*/
+.habitats{
+    width: 96%;
+    padding: 0px;
+    margin:  auto;/*centrar*/
+    display: grid;/*hacer una cuadricula para organizar las imagenes*/
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;/*hacer nueve columnas del mismo tamaño*/
+    grid-template-rows: 180px 180px 180px 180px 180px 180px;/*hacer seis filas de 180px*/
+    grid-gap: 1rem; /*espacio entre cada item*/
+}
+
+/*los mediquerys hacen que la web se adapte a los dispositivos de casi cualquier tamaño*/
+
+@media  (min-width: 921px) {/*cuando la pantalla tiene una ancho mayor a 921px (pantalla ordenador)*/
+
+    /*cada imagen toma un area en la cuadricula para organizarlas de una forma creativa*/
+    .item-a {
+        grid-area: 1 /1 / 4/ 3;
+    }
+
+    .item-b {
+        grid-column: 3/ 5;
+    }
+    .item-c{
+        grid-area: 2 /2 / 4/ 5; /* yi xi yf xf */
+    }
+    .item-d {
+        grid-area: 1/ 8 / 4/ 10; /* yi xi yf xf */
+    }
+
+    .item-e {
+        grid-area: 1/ 5 / 3/ 9; /* yi xi yf xf */
+    }
+
+    .item-f {
+        grid-area: 3/ 5 / 4/ 7; /* yi xi yf xf */
+    }
+
+    .item-g {
+        grid-area: 4/ 6 / 6/ 9; /* yi xi yf xf */
+    }
+
+    .item-h {
+        grid-area: 5/ 8 / 7/ 10; /* yi xi yf xf */
+    }
+
+    .item-i {
+        grid-area: 4/ 3 / 7/ 6; /* yi xi yf xf */
+    }
+
+    .item-j {
+        grid-area: 5/ 1 / 6/ 4; /*yi xi yf xf*/
+    }
+}
+
+@media  (min-width: 421px) and (max-width: 920px){/*cuando la pantalla tiene una ancho entre 421px y 920px (pantalla tablet y movil horixonatl )*/
+
+    .inicio{
+        margin-left: calc(100% - 20vw); /*para que el boton no se salga de la pantalla*/
+    }
+    
+    .articulos1{
+        grid-template-columns: 1fr 1fr; /*el apartado "amenazas" pasa a tener solo dos columnas con distinta distirbución para que se pueda visualizar mejor*/
+        grid-template-areas: 
+        " trafico calentamientoglobal " 
+        "caza caza";
+    }
+
+
+    .caza, .trafico, .calentamientoglobal{
+        height: calc(500px - 15vw);/*las clajas pasan a ser más cortas para que ocupen menos espacio en la panatalla*/
+    }
+
+    
+   /*--------------------habitats---------------------*/ 
+
+    .habitats{
+        grid-template-rows: 100px 100px 100px 100px 100px 100px;/*las filas pasan a ser más cortas para que ocupen menos espacio en la panatalla*/
+    }
+    .item-a {
+        grid-area: 1 /1 / 4/ 3;
+    }
+
+    .item-b {
+        grid-column: 3/ 5;
+    }
+    .item-c{
+        grid-area: 2 /2 / 4/ 5; /* yi xi yf xf */
+    }
+    .item-d {
+        grid-area: 1/ 8 / 4/ 10; /* yi xi yf xf */
+    }
+
+    .item-e {
+        grid-area: 1/ 5 / 3/ 9; /* yi xi yf xf */
+    }
+
+    .item-f {
+        grid-area: 3/ 5 / 4/ 7; /* yi xi yf xf */
+    }
+
+    .item-g {
+        grid-area: 4/ 6 / 6/ 9; /* yi xi yf xf */
+    }
+
+    .item-h {
+        grid-area: 5/ 8 / 7/ 10; /* yi xi yf xf */
+    }
+
+    .item-i {
+        grid-area: 4/ 3 / 7/ 6; /* yi xi yf xf */
+    }
+
+    .item-j {
+        grid-area: 5/ 1 / 6/ 4; /*yi xi yf xf*/
+    }
+}
+
+@media (max-width: 600px){/*para tablets y moviles con un ancho de pantalla inferior a 600px*/
+    .articulos2{
+        grid-template-columns: 1fr;/*la seccion "protege" pasa a tener una sola columna*/
+        grid-template-areas: 
+        " adopta" 
+        "apadrina"
+    }
+
+    .inicio{/*se cambia la posición en la pantalla del boton para que se siga viendo*/
+        margin-left: calc(100% - 25vw);
+        margin-top: 60vh;
+    }
+
+}
+
+@media (max-width: 420px){/*para moviles verticales con un ancho de pantalla inferior a 420px*/
+
+    .articulos1{
+        grid-template-columns: 1fr;/*"amenazas" pasa a tener un sola colunna*/
+        grid-template-areas: 
+        " trafico " 
+        "calentamientoglobal "
+        "caza";
+    }
+
+    .caza, .trafico, .calentamientoglobal{
+        height: calc(420px - 15vw);/*se cambia la altura de las cajas para que quepa el texto.*/
+    }
+
+    .navegador {
+        flex-flow: column wrap;/*los apartados pasan de distibuirse horizontalmente a verticalmente*/
+        width: 100%;
+    }
+    .apartadosmenuprincipal {
+        display: flex;
+        flex-flow: column nowrap;/*los apartados pasan de distibuirse horizontalmente a verticalmente*/
+    }
+
+    .submenu {
+        width: 100%;/*el submenú ahora ocupa el 100% del ancho de la pagina*/
+    }
+    
+    .menuprincipal{
+        flex-flow: column wrap;
+        width: 100%; 
+    }
+    
+   /*-------------------header----------------------*/ 
+
+    header h1{/*se quita el titulo para que se vea mejor el logo*/
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+    }
+    
+    header figure{
+        display: flex;
+        justify-content: center;/*centrar la imagen*/
+        width: 100%;
+        margin: 0px;
+    }
+    
+    header img{
+        margin: 10%;
+        width: 70%;
+
+    }
+
+    /*-------------------habitats----------------------*/ 
+
+    .habitats{
+        grid-template-columns: 1fr 1fr;/*pasa a solo tener dos columnas para que se vea mejor*/
+        grid-template-rows: 180px 180px 180px 180px 180px 180px 180px 180px;
+    }
+    /*se redistribuyen las areas del grid de habitats en las que se situa cada imagen*/
+    .item-a {
+        grid-column: 1;
+
+    }
+    
+    .item-b {
+        grid-column: 2;
+    }
+
+    .item-c{
+        grid-area: 2/ 1 / 2/ 3;
+    }
+    .item-d {
+        grid-column: 1;
+    }
+    
+    .item-e {
+        grid-area: 4/ 1 / 4/ 3;
+    }
+    
+    .item-f {
+        grid-column: 2;
+    }
+    
+    .item-g {
+        grid-area: 6/ 1 / 6/ 3;
+    }
+    
+    .item-h {
+        grid-column: 1/3;
+    }
+    
+    .item-i {
+        grid-area: 7/ 1 / 7/ 3;
+    }
+    
+    .item-j {
+        grid-area: 8/ 1 / 8/ 3;
+    }
+
+    iframe {
+        height: 50%; /*para que el mapa no tenga tanta altura*/
+    }
+
+}
+
+/* --------------footer--------*/
+footer{
+    margin: 0px;
+    padding: 0px;
+    width: 100%; 
+    color: white;/*color de la letra*/
+    background-color: #202020;
+    font-family: Arial, Helvetica, sans-serif;/*estilo de la letra*/
+} 
+
+.container-footer{
+    display: flex;
+    justify-content: space-evenly;/* dsitribuir el contenido en distintas columnas, con espacio entre ellas*/
+    align-items: stretch;
+    flex-flow: row wrap;/*si el ancho de la pantalla disminuye mucho cada columna pasa a la siguiente fila*/
+    margin: auto;
+    padding: 40px;
+}
+
+.mapa{
+    min-width: 200px; /*anchura de el mapa*/
+}
+
+.mapa-linkgoogle{
+    margin: 0;
+}
+
+iframe {
+    border: 1px solid black;
+    width: 100%; 
+}
+
+
+.Horarios-y-contacto{
+    min-width: 300px;
+}
+
+
+.logo-y-redes{
+    min-width: 200px;
+}
+
+.informacion-de-contacto{
+    margin-top: 20px;
+    display: flex;/*para que el icono este al lado del texto*/
+}
+
+.informacion-de-contacto figure{
+    margin: 10px;
+}
+
+.informacion-de-contacto img{
+   width: 36px; 
+}
+
+.logo-y-redes{
+    display: flex;
+    flex-flow: column wrap;/*distribuir el logo y las redes en una sola columna*/
+    justify-content: space-evenly;
+
+}
+.logo{
+    margin:0px
+}
+.logo img{
+    width: 150px;
+}
+
+.redes{
+    display: flex;/*para que las redes esten al lado de cada una*/
+    margin: 0px;
+}
+.redes figure{
+    margin: 0px;
+}
+.redes img{
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.container-footer h4{
+    font-size:calc(14px + 0.5vw);/*para que el tamaño de la letra cambie dependiendo del ancho de la pantalla*/
+}
+
+.container-footerfooter{
+    max-width: 100%; 
+    background: #101010;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.terminos{
+    margin-left: 100px;
+}
+.terminos a{
+    text-decoration: none;
+    color: #C7C7C7;
+}
+
+.clasificador{/*para que los textos que nombran las secciones sno se vean en la web, ya que solo tienen funcionalidad semantica*/
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
